@@ -1,0 +1,26 @@
+---
+import { process } from '../data/content';
+---
+
+<section id="metodologia" class="section bg-white">
+  <div class="container-x">
+    <div class="max-w-2xl">
+      <p class="eyebrow reveal">Metodología</p>
+      <h2 class="reveal mt-4 text-3xl font-extrabold sm:text-5xl" style="--d: 70ms">
+        Un camino claro, de la idea a la operación.
+      </h2>
+    </div>
+
+    <ol class="mt-14 grid gap-px overflow-hidden rounded-3xl bg-slate-200 ring-1 ring-slate-200 sm:grid-cols-2 lg:grid-cols-5">
+      {
+        process.map((p, i) => (
+          <li class="reveal bg-white p-7" style={`--d:${i * 70}ms`}>
+            <span class="font-display text-4xl font-extrabold text-brand-500/90">{p.step}</span>
+            <h3 class="mt-5 text-lg font-bold">{p.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{p.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Manrope Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  /* Marca: rojo Abacus + azul noche corporativo */
+  --color-brand-50: #fef2f1;
+  --color-brand-100: #fde3e1;
+  --color-brand-400: #ef4a42;
+  --color-brand-500: #e2231a;
+  --color-brand-600: #c41c14;
+  --color-brand-700: #9f150f;
+
+  --color-ink-950: #060a14;
+  --color-ink-900: #0b1220;
+  --color-ink-800: #121b30;
+  --color-ink-700: #1c2742;
+  --color-ink-600: #2b3858;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-white font-sans text-slate-700 antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900 tracking-tight;
+  }
+  ::selection {
+    @apply bg-brand-500 text-white;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .section {
+    @apply py-20 sm:py-28;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-8 bg-brand-500;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-200;
+  }
+  .btn-primary {
+    @apply bg-brand-500 text-white shadow-lg shadow-brand-500/25 hover:bg-brand-600 hover:shadow-brand-500/35;
+  }
+  .btn-ghost {
+    @apply border border-slate-300 bg-white text-ink-900 hover:border-ink-900;
+  }
+  .btn-ghost-dark {
+    @apply border border-white/25 text-white hover:border-white hover:bg-white/5;
+  }
+}
+
+/* Animaciones de entrada: solo se ocultan si JS está activo y el usuario no pidió menos movimiento */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  html.js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  .float-a { animation: float 7s ease-in-out infinite; }
+  .float-b { animation: float 9s ease-in-out -3s infinite; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}

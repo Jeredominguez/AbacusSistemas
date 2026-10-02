@@ -1,0 +1,60 @@
+---
+import { site } from '../data/site';
+
+const nav = [
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#soluciones', label: 'Soluciones' },
+  { href: '#metodologia', label: 'Metodología' },
+  { href: '#nosotros', label: 'Nosotros' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<footer class="bg-ink-950 text-slate-400">
+  <div class="container-x grid gap-12 py-16 md:grid-cols-[1.3fr_1fr_1fr]">
+    <div>
+      <img
+        src="/images/logo-abacus-oscuro.jpg"
+        alt="Abacus Sistemas S.R.L."
+        width="1004"
+        height="354"
+        loading="lazy"
+        class="h-20 w-auto -translate-x-3 mix-blend-screen"
+      />
+      <p class="mt-4 max-w-sm text-sm leading-relaxed">
+        Software a medida y soluciones tecnológicas integrales para empresas e instituciones de
+        salud.
+      </p>
+    </div>
+
+    <nav aria-label="Pie de página">
+      <p class="text-sm font-bold uppercase tracking-[0.16em] text-white">Navegación</p>
+      <ul class="mt-5 space-y-3 text-sm">
+        {nav.map((n) => <li><a href={n.href} class="transition hover:text-white">{n.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div>
+      <p class="text-sm font-bold uppercase tracking-[0.16em] text-white">Contacto</p>
+      <address class="mt-5 space-y-3 text-sm not-italic">
+        <p>{site.address.street}<br />({site.address.zip}) {site.address.city}</p>
+        <p>
+          {site.phones.map((p, i) => (
+            <>
+              <a href={`tel:${p.href}`} class="transition hover:text-white">{p.label}</a>
+              {i < site.phones.length - 1 && <br />}
+            </>
+          ))}
+        </p>
+        <p><a href={`mailto:${site.email}`} class="transition hover:text-white">{site.email}</a></p>
+      </address>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-x flex flex-col gap-2 py-6 text-xs sm:flex-row sm:items-center sm:justify-between">
+      <p>© {new Date().getFullYear()} {site.legalName} Todos los derechos reservados.</p>
+      <p>Buenos Aires, Argentina</p>
+    </div>
+  </div>
+</footer>

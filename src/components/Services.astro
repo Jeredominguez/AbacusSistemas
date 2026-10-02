@@ -1,0 +1,36 @@
+---
+import Icon from './Icon.astro';
+import { services } from '../data/content';
+---
+
+<section id="servicios" class="section bg-slate-50">
+  <div class="container-x">
+    <div class="max-w-2xl">
+      <p class="eyebrow reveal">Servicios</p>
+      <h2 class="reveal mt-4 text-3xl font-extrabold sm:text-5xl" style="--d: 70ms">
+        Tecnología integral, de punta a punta.
+      </h2>
+      <p class="reveal mt-5 text-lg text-slate-600" style="--d: 140ms">
+        Desde el software que gestiona su operación hasta la infraestructura que lo sostiene.
+        Un único interlocutor para toda su tecnología.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((s, i) => (
+          <article
+            class="reveal group relative overflow-hidden rounded-3xl bg-white p-8 ring-1 ring-slate-200 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5 hover:ring-brand-500/40"
+            style={`--d:${(i % 3) * 80}ms`}
+          >
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
+              <Icon name={s.icon} class="h-6 w-6" />
+            </span>
+            <h3 class="mt-6 text-xl font-bold">{s.title}</h3>
+            <p class="mt-3 leading-relaxed text-slate-600">{s.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

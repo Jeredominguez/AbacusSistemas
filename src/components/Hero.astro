@@ -1,0 +1,81 @@
+---
+import Icon from './Icon.astro';
+import LogoMark from './LogoMark.astro';
+import { site, yearsOfExperience } from '../data/site';
+
+// Solo datos respaldados por la documentación. Si se completa `foundedYear` en site.ts,
+// aparece automáticamente el indicador de años de trayectoria.
+const highlights = [
+  ...(yearsOfExperience ? [{ value: `+${yearsOfExperience}`, label: 'años de trayectoria' }] : []),
+  { value: 'A medida', label: 'Soluciones adaptadas a cada proceso' },
+  { value: 'Soporte', label: 'Equipo técnico permanente' },
+  { value: 'Personal', label: 'Atención cercana y directa' },
+].slice(0, 3);
+---
+
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-white to-slate-50">
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.55] [background-image:radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:26px_26px] [mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_70%)]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-x relative grid items-center gap-14 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
+    <div>
+      <p class="eyebrow reveal">{site.legalName} · Buenos Aires, Argentina</p>
+      <h1
+        class="reveal mt-6 text-[2.5rem] font-extrabold leading-[1.05] sm:text-6xl"
+        style="--d: 80ms"
+      >
+        Software a medida que
+        <span class="text-brand-500">ordena, controla</span>
+        y hace crecer su organización.
+      </h1>
+      <p class="reveal mt-6 max-w-xl text-lg leading-relaxed text-slate-600" style="--d: 160ms">
+        Diseñamos sistemas de gestión para empresas e instituciones de salud, con soporte técnico
+        permanente y atención personalizada.
+      </p>
+      <div class="reveal mt-9 flex flex-wrap gap-3" style="--d: 240ms">
+        <a href="#contacto" class="btn btn-primary">
+          Solicitar una reunión <Icon name="arrow" class="h-4 w-4" />
+        </a>
+        <a href="#soluciones" class="btn btn-ghost">Ver soluciones</a>
+      </div>
+
+      <dl class="reveal mt-14 grid max-w-xl grid-cols-3 gap-6 border-t border-slate-200 pt-8" style="--d: 320ms">
+        {
+          highlights.map((h) => (
+            <div>
+              <dt class="font-display text-xl font-extrabold text-ink-900 sm:text-2xl">{h.value}</dt>
+              <dd class="mt-1 text-sm leading-snug text-slate-500">{h.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="reveal relative mx-auto w-full max-w-md lg:max-w-none" style="--d: 200ms">
+      <div class="relative overflow-hidden rounded-[2rem] bg-ink-900 p-8 shadow-2xl shadow-ink-900/30 ring-1 ring-white/10 sm:p-12">
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(226,35,26,0.22),transparent_55%)]"
+          aria-hidden="true"
+        >
+        </div>
+        <LogoMark uid="hero" class="relative mx-auto w-full max-w-[340px] drop-shadow-2xl" />
+      </div>
+
+      <div class="float-a absolute -left-3 top-10 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-slate-200 sm:-left-8">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-50 text-brand-600">
+          <Icon name="dashboard" class="h-5 w-5" />
+        </span>
+        <span class="text-sm font-semibold text-ink-900">Gestión integral</span>
+      </div>
+      <div class="float-b absolute -right-2 bottom-12 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-slate-200 sm:-right-6">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-50 text-brand-600">
+          <Icon name="health" class="h-5 w-5" />
+        </span>
+        <span class="text-sm font-semibold text-ink-900">Sistemas de salud</span>
+      </div>
+    </div>
+  </div>
+</section>

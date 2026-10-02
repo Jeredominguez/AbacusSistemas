@@ -1,0 +1,68 @@
+---
+// Redibujo vectorial del isotipo de Abacus (grilla de esferas + bloque rojo).
+// Se usa como elemento gráfico principal; escala sin perder calidad.
+interface Props {
+  class?: string;
+  uid?: string;
+}
+const { class: className = '', uid = 'lm' } = Astro.props;
+
+const pattern = [
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 1, 1, 1],
+  [0, 1, 1, 1, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 1, 1, 1],
+  [0, 1, 1, 1, 0],
+  [0, 1, 1, 1, 0],
+  [0, 0, 1, 1, 1],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+];
+const px = 40;
+const py = 25;
+const ox = 20;
+const oy = 14;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 310 290"
+  role="img"
+  aria-label="Isotipo de Abacus Sistemas"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <radialGradient id={`${uid}-s`} cx="38%" cy="32%" r="75%">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="0.45" stop-color="#d9dde3" />
+      <stop offset="1" stop-color="#8a919c" />
+    </radialGradient>
+    <radialGradient id={`${uid}-r`} cx="38%" cy="32%" r="75%">
+      <stop offset="0" stop-color="#ff9d8f" />
+      <stop offset="0.4" stop-color="#e2231a" />
+      <stop offset="1" stop-color="#9a110b" />
+    </radialGradient>
+    <linearGradient id={`${uid}-b`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ee3027" />
+      <stop offset="1" stop-color="#c41c14" />
+    </linearGradient>
+  </defs>
+
+  <path d="M196 52 H252 Q302 52 302 104 V226 H196 Z" fill={`url(#${uid}-b)`} />
+
+  {
+    pattern.map((row, r) =>
+      row.map((on, c) => (
+        <ellipse
+          cx={ox + c * px}
+          cy={oy + r * py}
+          rx="18.5"
+          ry="11.5"
+          fill={`url(#${uid}-${on ? 'r' : 's'})`}
+        />
+      ))
+    )
+  }
+</svg>

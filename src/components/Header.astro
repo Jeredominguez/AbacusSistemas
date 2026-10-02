@@ -1,0 +1,86 @@
+---
+import Icon from './Icon.astro';
+
+const links = [
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#soluciones', label: 'Soluciones' },
+  { href: '#metodologia', label: 'Metodología' },
+  { href: '#nosotros', label: 'Nosotros' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-50 border-b border-transparent bg-white/85 backdrop-blur-md transition-colors duration-300 data-[scrolled=true]:border-slate-200"
+>
+  <div class="container-x flex h-[72px] items-center justify-between">
+    <a href="/" class="flex items-center" aria-label="Abacus Sistemas S.R.L. - Inicio">
+      <img
+        src="/images/logo-abacus-claro.jpg"
+        alt="Abacus Sistemas S.R.L."
+        width="1004"
+        height="354"
+        class="h-14 w-auto mix-blend-multiply"
+      />
+    </a>
+
+    <nav aria-label="Principal" class="hidden items-center gap-8 lg:flex">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="text-sm font-medium text-slate-600 transition-colors hover:text-ink-900"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a href="#contacto" class="btn btn-primary !px-5 !py-2.5">Solicitar reunión</a>
+    </nav>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      class="grid h-11 w-11 place-items-center rounded-full border border-slate-200 text-ink-900 lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Abrir menú"
+    >
+      <Icon name="menu" class="h-5 w-5" />
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white lg:hidden">
+    <nav aria-label="Principal móvil" class="container-x flex flex-col py-4">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="border-b border-slate-100 py-3.5 text-base font-medium text-ink-900"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a href="#contacto" class="btn btn-primary mt-4">Solicitar reunión</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header')!;
+  const toggle = document.getElementById('menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+
+  const onScroll = () => header.dataset.scrolled = String(window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const setOpen = (open: boolean) => {
+    menu.classList.toggle('hidden', !open);
+    toggle.setAttribute('aria-expanded', String(open));
+  };
+  toggle.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+</script>

@@ -1,0 +1,61 @@
+---
+import Icon from './Icon.astro';
+import { site, yearsOfExperience } from '../data/site';
+import { values } from '../data/content';
+---
+
+<section id="nosotros" class="section bg-slate-50">
+  <div class="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+    <div>
+      <p class="eyebrow reveal">Nosotros</p>
+      <h2 class="reveal mt-4 text-3xl font-extrabold sm:text-5xl" style="--d: 70ms">
+        Una empresa argentina que entiende su negocio.
+      </h2>
+      <div class="reveal mt-6 space-y-4 text-lg leading-relaxed text-slate-600" style="--d: 140ms">
+        <p>
+          En {site.legalName} desarrollamos software a medida y brindamos soluciones tecnológicas
+          integrales para empresas e instituciones de salud de todo el país.
+        </p>
+        <p>
+          Nuestro objetivo es asesorar y dar solución a los requerimientos de cada cliente,
+          aportando los recursos de hardware y software necesarios, con la cercanía de un equipo
+          técnico que hace propias las necesidades de quienes demandan soluciones rápidas y
+          eficientes.
+        </p>
+      </div>
+
+      <ul class="reveal mt-8 space-y-3" style="--d: 200ms">
+        {
+          values.map((v) => (
+            <li class="flex items-center gap-3 font-semibold text-ink-900">
+              <span class="grid h-6 w-6 place-items-center rounded-full bg-brand-500 text-white">
+                <Icon name="check" class="h-3.5 w-3.5" />
+              </span>
+              {v}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="reveal relative" style="--d: 120ms">
+      <div class="rounded-3xl bg-white p-8 shadow-xl shadow-slate-900/5 ring-1 ring-slate-200 sm:p-10">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600">Dirección</p>
+        <p class="mt-5 font-display text-2xl font-extrabold text-ink-900">{site.leadership.name}</p>
+        <p class="text-slate-500">{site.leadership.role} · {site.legalName}</p>
+        <p class="mt-6 border-l-2 border-brand-500 pl-5 text-lg leading-relaxed text-slate-600">
+          La atención personalizada y el soporte técnico aseguran la calidad y el óptimo
+          funcionamiento de los sistemas que proveemos.
+        </p>
+        {
+          yearsOfExperience && (
+            <div class="mt-8 border-t border-slate-200 pt-6">
+              <p class="font-display text-5xl font-extrabold text-ink-900">+{yearsOfExperience}</p>
+              <p class="text-slate-500">años de trayectoria desde {site.foundedYear}</p>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

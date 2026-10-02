@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+import { pillars } from '../data/content';
+---
+
+<section class="border-y border-slate-200 bg-white" aria-label="Compromisos de Abacus">
+  <div class="container-x grid gap-px py-2 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      pillars.map((p, i) => (
+        <div class="reveal flex gap-4 px-2 py-8 sm:px-6" style={`--d:${i * 70}ms`}>
+          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink-900 text-white">
+            <Icon name={p.icon} class="h-5 w-5" />
+          </span>
+          <div>
+            <h3 class="text-base font-bold">{p.title}</h3>
+            <p class="mt-1 text-sm leading-relaxed text-slate-500">{p.text}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
